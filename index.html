@@ -2,392 +2,548 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>যোগাযোগ তালিকা</title>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Exo+2:wght@700;800;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>যোগাযোগ</title>
 <style>
-:root{
-  --bg:#07101e;--ph:#0d1625;--sf:#131f32;--sf2:#1a2a40;
-  --bd:rgba(255,255,255,.07);--ac:#22d3a5;--ac2:#3b82f6;
-  --wa:#25D366;--dl:#ef4444;--tx:#eaf4ff;--st:#5e7d99;--mt:#1e2f44;
-}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;font-family:'Hind Siliguri',sans-serif;color:var(--tx);background:var(--bg)}
-body{display:flex;align-items:flex-start;justify-content:center;overflow-x:hidden}
+  @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
 
-.shell{width:100%;max-width:420px;min-height:100vh;background:var(--ph);display:flex;flex-direction:column}
-@media(min-width:460px){
-  body{align-items:center;padding:28px 0;background:radial-gradient(ellipse at 25% 20%,#0d1f3e,#07101e 70%)}
-  .shell{min-height:auto;max-height:92vh;border-radius:46px;
-    box-shadow:0 0 0 8px #111c2e,0 0 0 10px #08111f,0 50px 90px rgba(0,0,0,.75);
-    border:1px solid rgba(255,255,255,.05);overflow:hidden}
-  .notchrow{display:flex;justify-content:center;padding:10px 0 4px}
-  .notch{width:110px;height:26px;background:#06111d;border-radius:0 0 16px 16px;display:flex;align-items:center;justify-content:center;gap:7px}
-  .ndot{width:9px;height:9px;background:#1a2637;border-radius:50%;border:2px solid #06111d}
-  .nbar{width:42px;height:4px;background:#1a2637;border-radius:4px}
-}
-@media(max-width:459px){.notchrow{display:none}}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.scroller{flex:1;overflow-y:auto;scrollbar-width:none}
-.scroller::-webkit-scrollbar{display:none}
+  :root {
+    --bg:       #0d1117;
+    --card:     #161b22;
+    --card2:    #1a2030;
+    --border:   #21262d;
+    --accent:   #00d4aa;
+    --text:     #e6edf3;
+    --sub:      #7d8590;
+    --phone:    #58a6ff;
+    --call-bg:  #1e3a2f;
+    --wa-bg:    #0d2d47;
+    --radius:   16px;
+  }
 
-/* Status */
-.status{display:flex;justify-content:space-between;align-items:center;padding:8px 22px 2px;font-family:'Exo 2',sans-serif;font-size:.7rem;font-weight:700;color:var(--st);letter-spacing:.5px}
+  body {
+    font-family: 'Hind Siliguri', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 0 0 110px;
+  }
 
-/* Header */
-.hdr{padding:8px 20px 14px}
-.hdrtop{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.title{font-family:'Exo 2',sans-serif;font-size:1.55rem;font-weight:900;letter-spacing:-.5px;line-height:1}
-.title em{color:var(--ac);font-style:normal}
-.pill{background:rgba(34,211,165,.12);border:1px solid rgba(34,211,165,.22);color:var(--ac);font-size:.7rem;font-weight:700;padding:4px 12px;border-radius:20px;font-family:'Exo 2',sans-serif}
+  .app { width: 100%; max-width: 480px; }
 
-/* Clock */
-.clockbar{display:flex;align-items:center;justify-content:space-between;background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:10px 16px;margin-bottom:14px}
-.bigtime{font-family:'Exo 2',sans-serif;font-size:1.65rem;font-weight:900;color:var(--tx);letter-spacing:2px;line-height:1}
-.colon{animation:blink 1s step-end infinite}
-@keyframes blink{50%{opacity:0}}
-.clkr{text-align:right}
-.clkdate{font-size:.78rem;color:var(--st);line-height:1.4}
-.clkday{font-size:.7rem;color:var(--ac);font-weight:600;margin-top:2px}
+  /* Hero */
+  .hero { text-align: center; padding: 44px 24px 20px; position: relative; }
+  .hero-glow {
+    position: absolute; top: 18px; left: 50%;
+    transform: translateX(-50%);
+    width: 280px; height: 90px;
+    background: radial-gradient(ellipse at center,
+      rgba(0,212,170,.30) 0%, rgba(0,212,170,.12) 50%, transparent 80%);
+    filter: blur(20px);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-size: 2.5rem; font-weight: 700; letter-spacing: 3px;
+    background: linear-gradient(135deg, #e6edf3 30%, #00d4aa 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; position: relative; z-index: 1;
+  }
+  .hero-dot {
+    display: inline-block; width: 10px; height: 10px;
+    background: var(--accent); border-radius: 50%;
+    margin-left: 5px; vertical-align: middle;
+    position: relative; top: -5px;
+    box-shadow: 0 0 12px var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 8px var(--accent); }
+    50%      { box-shadow: 0 0 22px var(--accent), 0 0 44px rgba(0,212,170,.3); }
+  }
 
-/* Search */
-.srchwrap{position:relative;margin-bottom:4px}
-.srchwrap input{width:100%;background:var(--sf);border:1.5px solid var(--bd);border-radius:13px;padding:11px 42px 11px 42px;color:var(--tx);font-family:'Hind Siliguri',sans-serif;font-size:.93rem;outline:none;transition:border-color .2s;caret-color:var(--ac)}
-.srchwrap input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(34,211,165,.1)}
-.srchwrap input::placeholder{color:var(--st);font-size:.85rem}
-.sico,.sclr{position:absolute;top:50%;transform:translateY(-50%);font-size:.9rem;color:var(--st)}
-.sico{left:14px;pointer-events:none}
-.sclr{right:12px;cursor:pointer;display:none;background:var(--mt);border-radius:50%;width:20px;height:20px;align-items:center;justify-content:center;font-size:.7rem;font-weight:700}
-.sclr.on{display:flex}
+  /* Time bar */
+  .time-bar {
+    margin: 0 14px 14px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 14px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  #clockDisplay {
+    font-size: 2rem; font-weight: 700; letter-spacing: 2px; color: var(--text);
+  }
+  #clockDisplay .ampm { color: var(--accent); font-size: 1rem; font-weight: 500; margin-left: 6px; }
+  .date-info { text-align: right; }
+  .date-info .dt  { font-size: .82rem; color: var(--sub); }
+  .date-info .day { font-size: .9rem;  color: var(--accent); font-weight: 600; }
 
-/* Section label */
-.slbl{font-size:.7rem;font-weight:600;color:var(--st);letter-spacing:1px;text-transform:uppercase;padding:12px 20px 6px}
+  /* Search */
+  .search-wrap { margin: 0 14px 18px; position: relative; }
+  .search-wrap input {
+    width: 100%; background: var(--card); border: 1px solid var(--border);
+    border-radius: 50px; padding: 11px 18px 11px 46px;
+    font-family: 'Hind Siliguri', sans-serif; font-size: .93rem;
+    color: var(--text); outline: none; transition: border-color .2s;
+  }
+  .search-wrap input::placeholder { color: var(--sub); }
+  .search-wrap input:focus { border-color: var(--accent); }
+  .search-icon {
+    position: absolute; left: 15px; top: 50%;
+    transform: translateY(-50%); color: var(--sub);
+  }
 
-/* Prayer */
-.ptitle{font-size:.7rem;font-weight:600;color:var(--st);letter-spacing:1px;text-transform:uppercase;padding:14px 20px 8px}
-.pgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:0 12px 4px}
-.pc{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:8px 4px;text-align:center;position:relative;overflow:hidden;transition:background .2s,border-color .2s}
-.pc.act{background:rgba(34,211,165,.1);border-color:rgba(34,211,165,.35)}
-.pc.act::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--ac)}
-.pico{font-size:1rem;margin-bottom:3px}
-.pnm{font-size:.58rem;font-weight:700;color:var(--st);letter-spacing:.3px;margin-bottom:4px;font-family:'Exo 2',sans-serif}
-.ptm{font-size:.68rem;font-weight:700;color:var(--tx);font-family:'Exo 2',sans-serif;line-height:1}
-.ptm.ld{color:var(--st);font-size:.58rem}
-.pc.act .pnm{color:var(--ac)}
-.pc.act .ptm{color:var(--ac)}
+  /* Section label */
+  .section-label {
+    padding: 0 18px 8px; font-size: .78rem; color: var(--sub);
+    letter-spacing: 1.5px; text-transform: uppercase;
+  }
 
-/* Contact list */
-.listpad{padding:0 12px}
-.ci{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;margin-bottom:6px;background:var(--sf);border:1px solid var(--bd);animation:fup .3s ease both;position:relative}
-@keyframes fup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.sn{font-size:.62rem;font-family:'Exo 2',sans-serif;font-weight:700;color:var(--st);min-width:16px;text-align:right}
-.av{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:#fff;flex-shrink:0;font-family:'Exo 2',sans-serif}
-.av0{background:linear-gradient(135deg,#6366f1,#8b5cf6)}
-.av1{background:linear-gradient(135deg,#0ea5e9,#22d3a5)}
-.av2{background:linear-gradient(135deg,#f59e0b,#ef4444)}
-.av3{background:linear-gradient(135deg,#ec4899,#8b5cf6)}
-.av4{background:linear-gradient(135deg,#10b981,#0ea5e9)}
-.av5{background:linear-gradient(135deg,#f97316,#fbbf24)}
-.av6{background:linear-gradient(135deg,#14b8a6,#6366f1)}
-.av7{background:linear-gradient(135deg,#e11d48,#f97316)}
-.inf{flex:1;min-width:0}
-.cn{font-size:.9rem;font-weight:600;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
-.cnum{font-size:.8rem;color:#60a5fa;margin-top:3px;font-family:'Exo 2',sans-serif;font-weight:600;letter-spacing:.3px}
-.acts{display:flex;gap:6px;flex-shrink:0}
-.ba{width:33px;height:33px;border-radius:9px;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;font-size:.85rem;transition:transform .1s;text-decoration:none}
-.ba:active{transform:scale(.87)}
-.bacall{background:rgba(59,130,246,.15);color:#60a5fa}
-.bawa{background:rgba(37,211,102,.15);color:#4ade80}
-.badel{background:rgba(239,68,68,.1);color:#f87171}
-.newtag{position:absolute;top:-2px;right:-2px;background:var(--ac);color:#07101e;font-size:.45rem;font-weight:900;padding:1px 4px;border-radius:3px;font-family:'Exo 2',sans-serif}
-.nores{text-align:center;padding:40px 20px;color:var(--st);font-size:.88rem;display:none}
-.nores .ico{font-size:2.2rem;margin-bottom:8px}
+  /* Contact list */
+  .contact-list { padding: 0 10px; }
 
-/* Bottom bar */
-.btm{padding:10px 18px 12px;border-top:1px solid var(--bd);background:var(--ph);display:flex;align-items:center;gap:10px;position:sticky;bottom:0}
-.bstat{font-size:.78rem;color:var(--st);flex:1}
-.bstat strong{color:var(--ac);font-family:'Exo 2',sans-serif}
-.fab{background:linear-gradient(135deg,#22d3a5,#0ea5e9);border:none;border-radius:13px;padding:10px 16px;color:#07101e;font-weight:700;font-family:'Hind Siliguri',sans-serif;font-size:.85rem;cursor:pointer;display:flex;align-items:center;gap:5px;box-shadow:0 4px 16px rgba(34,211,165,.3);transition:transform .15s;white-space:nowrap}
-.fab:active{transform:scale(.95)}
+  .contact-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); margin-bottom: 8px;
+    display: flex; align-items: center;
+    padding: 11px 11px; gap: 10px;
+    transition: background .18s, border-color .18s;
+  }
+  .contact-card:hover { background: var(--card2); border-color: #30363d; }
+  .contact-card.user-added { border-left: 3px solid var(--accent); cursor: pointer; }
+  .contact-card.user-added:hover { border-color: var(--accent); background: var(--card2); }
 
-/* Modal */
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);z-index:100;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
-.ov.open{opacity:1;pointer-events:all}
-.sh{width:100%;max-width:420px;background:#0f1e30;border-radius:28px 28px 0 0;padding:22px 20px 34px;transform:translateY(100%);transition:transform .3s cubic-bezier(.34,1.56,.64,1);border:1px solid var(--bd);border-bottom:none}
-.ov.open .sh{transform:translateY(0)}
-.hdl{width:38px;height:4px;background:var(--mt);border-radius:4px;margin:0 auto 18px}
-.mtit{font-family:'Exo 2',sans-serif;font-size:1.15rem;font-weight:800;color:var(--tx);margin-bottom:16px}
-.mtit em{color:var(--ac);font-style:normal}
-.fg{display:flex;flex-direction:column;gap:11px}
-.flbl{font-size:.72rem;color:var(--st);font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px}
-.fi{width:100%;background:var(--sf);border:1.5px solid var(--bd);border-radius:11px;padding:11px 14px;color:var(--tx);font-family:'Hind Siliguri',sans-serif;font-size:.93rem;outline:none;transition:border-color .2s;caret-color:var(--ac)}
-.fi:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(34,211,165,.1)}
-.fi::placeholder{color:var(--st)}
-.fi.err{border-color:var(--dl);animation:shake .3s ease}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
-.mac{display:flex;gap:10px;margin-top:18px}
-.mcan{flex:1;padding:12px;background:var(--sf);border:1.5px solid var(--bd);border-radius:12px;color:var(--st);font-family:'Hind Siliguri',sans-serif;font-size:.92rem;font-weight:600;cursor:pointer}
-.msav{flex:2;padding:12px;background:linear-gradient(135deg,#22d3a5,#0ea5e9);border:none;border-radius:12px;color:#07101e;font-family:'Hind Siliguri',sans-serif;font-size:.92rem;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(34,211,165,.28);transition:transform .1s}
-.msav:active{transform:scale(.97)}
+  .serial {
+    font-size: .78rem; font-weight: 700; color: #a0aab4;
+    min-width: 20px; text-align: center;
+  }
 
-/* Toast */
-.toast{position:fixed;bottom:85px;left:50%;transform:translateX(-50%) translateY(16px);background:#0e2e1f;border:1px solid rgba(34,211,165,.3);color:var(--ac);font-size:.82rem;font-weight:600;padding:9px 18px;border-radius:30px;z-index:200;opacity:0;transition:opacity .25s,transform .25s;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.4)}
-.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+  .avatar {
+    width: 46px; height: 46px; border-radius: 13px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .88rem; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+
+  .contact-info { flex: 1; min-width: 0; }
+  .contact-info .name {
+    font-size: .97rem; font-weight: 600; color: var(--text);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .contact-info .phone {
+    font-size: .79rem; color: var(--phone); margin-top: 2px;
+    font-family: monospace, 'Hind Siliguri'; letter-spacing: .3px;
+  }
+
+  /* Action buttons */
+  .actions { display: flex; gap: 6px; flex-shrink: 0; align-items: center; }
+
+  .btn-action {
+    width: 38px; height: 38px; border-radius: 10px; border: none;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: transform .15s, filter .15s;
+    text-decoration: none;
+  }
+  .btn-action:hover { transform: scale(1.1); filter: brightness(1.25); }
+  .btn-call     { background: var(--call-bg); }
+  .btn-whatsapp { background: var(--wa-bg); }
+
+  /* Bottom bar */
+  .bottom-bar {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 480px;
+    background: linear-gradient(to top, #0d1117 75%, transparent);
+    padding: 14px 14px 22px;
+    display: flex; align-items: center; justify-content: space-between;
+    z-index: 10;
+  }
+  .total-count { font-size: .83rem; color: var(--sub); }
+  .total-count span { color: var(--text); font-weight: 700; }
+
+  .btn-add {
+    background: linear-gradient(135deg, var(--accent) 0%, #00b894 100%);
+    color: #0d1117; border: none; border-radius: 50px;
+    padding: 11px 20px; font-family: 'Hind Siliguri', sans-serif;
+    font-size: .93rem; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; gap: 7px;
+    box-shadow: 0 4px 20px rgba(0,212,170,.38);
+    transition: box-shadow .2s, transform .2s;
+  }
+  .btn-add:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,212,170,.5); }
+
+  /* Modal */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,.78); backdrop-filter: blur(5px);
+    z-index: 100; align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 22px; padding: 28px 22px 22px;
+    width: 92%; max-width: 380px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.65);
+    animation: slideUp .22s ease;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(36px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  .modal h2   { font-size: 1.15rem; margin-bottom: 3px; }
+  .modal .sub { font-size: .8rem; color: var(--sub); margin-bottom: 20px; }
+
+  .modal-field { margin-bottom: 12px; position: relative; }
+  .modal-field input {
+    width: 100%; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 11px; padding: 12px 14px;
+    font-family: 'Hind Siliguri', sans-serif; font-size: .93rem;
+    color: var(--text); outline: none; transition: border-color .2s;
+  }
+  .modal-field input:focus { border-color: var(--accent); }
+  .modal-field input::placeholder { color: var(--sub); }
+  .modal-field.has-prefix input { padding-left: 52px; }
+  .modal-prefix {
+    position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+    font-size: .88rem; color: var(--accent); font-weight: 700;
+    pointer-events: none; font-family: monospace;
+  }
+
+  .modal-actions { display: flex; gap: 10px; margin-top: 18px; }
+  .btn-cancel {
+    flex: 1; background: transparent; border: 1px solid var(--border);
+    border-radius: 11px; padding: 11px;
+    font-family: 'Hind Siliguri', sans-serif; font-size: .88rem;
+    color: var(--sub); cursor: pointer; transition: border-color .2s, color .2s;
+  }
+  .btn-cancel:hover { border-color: #58a6ff; color: var(--text); }
+  .btn-save {
+    flex: 2; background: linear-gradient(135deg, var(--accent) 0%, #00b894 100%);
+    border: none; border-radius: 11px; padding: 11px;
+    font-family: 'Hind Siliguri', sans-serif; font-size: .93rem;
+    font-weight: 700; color: #0d1117; cursor: pointer; transition: transform .15s;
+  }
+  .btn-save:hover { transform: scale(1.02); }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 90px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #1e3a2f; color: var(--accent);
+    border: 1px solid #2ea043; border-radius: 50px;
+    padding: 10px 22px; font-size: .88rem; font-weight: 600;
+    opacity: 0; transition: opacity .3s, transform .3s;
+    pointer-events: none; z-index: 200; white-space: nowrap;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* Avatar palette */
+  .av-1 { background: linear-gradient(135deg,#f97316,#ef4444); }
+  .av-2 { background: linear-gradient(135deg,#a855f7,#ec4899); }
+  .av-3 { background: linear-gradient(135deg,#06b6d4,#3b82f6); }
+  .av-4 { background: linear-gradient(135deg,#10b981,#059669); }
+  .av-5 { background: linear-gradient(135deg,#f59e0b,#f97316); }
+  .av-6 { background: linear-gradient(135deg,#6366f1,#8b5cf6); }
+  .av-7 { background: linear-gradient(135deg,#14b8a6,#06b6d4); }
+  .av-8 { background: linear-gradient(135deg,#f43f5e,#ec4899); }
 </style>
 </head>
 <body>
-<div class="shell">
-  <div class="notchrow">
-    <div class="notch"><div class="nbar"></div><div class="ndot"></div></div>
-  </div>
-  <div class="status">
-    <span id="stclk">9:41</span><span>📶 🔋</span>
+<div class="app">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <h1>জাকারিয়া<span class="hero-dot"></span></h1>
   </div>
 
-  <div class="hdr">
-    <div class="hdrtop">
-      <div class="title">যোগাযোগ<em>.</em></div>
-      <div class="pill" id="totpill">২০ জন</div>
-    </div>
-    <div class="clockbar">
-      <div class="bigtime" id="bigclk">--<span class="colon">:</span>--</div>
-      <div class="clkr">
-        <div class="clkdate" id="clkdate">লোড হচ্ছে…</div>
-        <div class="clkday" id="clkday"></div>
-      </div>
-    </div>
-    <div class="srchwrap">
-      <span class="sico">🔍</span>
-      <input type="text" id="srch" placeholder="নাম বা নাম্বার খুঁজুন…" oninput="onSearch(this.value)">
-      <span class="sclr" id="sclr" onclick="clearSrch()">✕</span>
+  <!-- Clock -->
+  <div class="time-bar">
+    <div id="clockDisplay">--:-- <span class="ampm">AM</span></div>
+    <div class="date-info">
+      <div class="dt"  id="dateDisplay">লোড হচ্ছে...</div>
+      <div class="day" id="dayDisplay">--</div>
     </div>
   </div>
 
-  <div class="scroller">
-    <!-- Prayer -->
-    <div class="ptitle">🕌 নামাজের সময়সূচি — বরিশাল</div>
-    <div class="pgrid">
-      <div class="pc" id="pc0"><div class="pico">🌅</div><div class="pnm">ফজর</div><div class="ptm ld" id="pt0">…</div></div>
-      <div class="pc" id="pc1"><div class="pico">☀️</div><div class="pnm">যোহর</div><div class="ptm ld" id="pt1">…</div></div>
-      <div class="pc" id="pc2"><div class="pico">🌤️</div><div class="pnm">আসর</div><div class="ptm ld" id="pt2">…</div></div>
-      <div class="pc" id="pc3"><div class="pico">🌇</div><div class="pnm">মাগরিব</div><div class="ptm ld" id="pt3">…</div></div>
-      <div class="pc" id="pc4"><div class="pico">🌙</div><div class="pnm">এশা</div><div class="ptm ld" id="pt4">…</div></div>
-    </div>
-
-    <!-- Contacts -->
-    <div class="slbl" id="slbl">সকল পরিচিত</div>
-    <div class="listpad" id="lpad">
-      <div class="nores" id="nores"><div class="ico">🔎</div><div>কোনো ফলাফল নেই</div></div>
-    </div>
+  <!-- Search -->
+  <div class="search-wrap">
+    <span class="search-icon">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+    </span>
+    <input type="text" id="searchInput" placeholder="নাম বা নাম্বার খুঁজুন..." oninput="filterContacts()">
   </div>
 
-  <div class="btm">
-    <div class="bstat">মোট <strong id="viscnt">২০</strong> জন</div>
-    <button class="fab" onclick="openModal()">＋ নাম্বার যোগ করুন</button>
+  <div class="section-label">সকল পরিচিত</div>
+  <div class="contact-list" id="contactList"></div>
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar">
+    <div class="total-count">মোট <span id="totalCount">0</span> জন</div>
+    <button class="btn-add" onclick="openModal('add')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12h14"/>
+      </svg>
+      নাম্বার যোগ করুন
+    </button>
   </div>
 </div>
 
-<div class="ov" id="ov" onclick="bgcl(event)">
-  <div class="sh">
-    <div class="hdl"></div>
-    <div class="mtit">নতুন <em>নাম্বার</em> যোগ করুন</div>
-    <div class="fg">
-      <div><div class="flbl">নাম</div><input class="fi" id="iname" placeholder="যেমন: রহিম সাহেব" type="text"></div>
-      <div><div class="flbl">মোবাইল নাম্বার</div><input class="fi" id="inum" placeholder="01XXXXXXXXX" type="tel"></div>
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeOnBackdrop(event)">
+  <div class="modal">
+    <h2 id="modalTitle">নতুন পরিচিত যোগ করুন</h2>
+    <p class="sub">নিচে নাম ও নাম্বার লিখুন</p>
+    <div class="modal-field">
+      <input type="text" id="inputName" placeholder="পূর্ণ নাম লিখুন">
     </div>
-    <div class="mac">
-      <button class="mcan" onclick="closeModal()">বাতিল</button>
-      <button class="msav" onclick="saveContact()">✓ সেভ করুন</button>
+    <div class="modal-field has-prefix">
+      <span class="modal-prefix">+880</span>
+      <input type="tel" id="inputPhone" placeholder="01XXXXXXXXX" maxlength="11">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">বাতিল</button>
+      <button class="btn-save" id="btnSave" onclick="saveModal()">সংরক্ষণ করুন</button>
     </div>
   </div>
 </div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-// ─── Contacts ───
-var PRESET=[
-  {name:"বাকাবিল্লাহ ইমাম",     number:"01779937436"},
-  {name:"বেল্লাল ভাই জামায়াত",     number:"01828091382"},
-  {name:"রহিম মোল্লা",     number:"01715619146"},
-  {name:"জব্বার ফকির",      number:"01706173449"},
-  {name:"মতলেব নাজির",       number:"01742793242"},
-  {name:"আলতাফ ",      number:"01731813607"},
-  {name:"আল আমিন",       number:"01746306099"},
-  {name:"দুলাল",   number:"01716114179"},
-  {name:"ছগির খা",         number:"01777407663"},
-  {name:"কালু গরামি",   number:"01712232501"},
-  {name:"জাকারিয়া",    number:"01792725543"},
-  {name:"জাকারিয়া",    number:"+8809638034072"},
-  {name:"সেকান্দার",       number:""},
-  {name:"বাবুল ফহকির",    number:""},
-  {name:"জাহাঙ্গির আলাদার",   number:"01724000014"}, 
-
+/* Preset contacts (never editable) */
+const PRESET = [
+  { name:"বাকিবিল্লাহ ইমাম",    phone:"01779937436" },
+  { name:"বেল্লাল ভাই জামায়াত", phone:"01828091382" },
+  { name:"রহিম মোল্লা",          phone:"01715619146" },
+  { name:"জর্বার ফিকর",          phone:"01706173449" },
+  { name:"মতেলব নাজির",          phone:"01742793242" },
+  { name:"আলতাফ",                phone:"01731813607" },
+  { name:"আল আমিন",              phone:"01746306099" },
+  { name:"দুলাল",                 phone:"01716114179" },
+  { name:"ছগির খা",              phone:"01777407663" },
+  { name:"কালু গরাম",            phone:"01712232501" },
+  { name:"জাকারিয়া",             phone:"01792725543" },
+  { name:"জাকারিয়া",             phone:"9638034072"  },
+  { name:"সেকান্দার",             phone:""            },
+  { name:"বাবুল ফহিকর",          phone:""            },
+  { name:"জাহাঙ্গির আলাদার",     phone:"01724000014" },
 ];
-var SK="ecv3";
-function ldx(){try{return JSON.parse(localStorage.getItem(SK))||[];}catch(e){return[];}}
-function svx(a){localStorage.setItem(SK,JSON.stringify(a));}
-var extra=ldx();
-function allC(){return PRESET.concat(extra);}
 
-// ─── Bengali digits ───
-var BD=["০","১","২","৩","৪","৫","৬","৭","৮","৯"];
-function bn(s){return String(s).replace(/[0-9]/g,function(d){return BD[+d];});}
-function fmt12(h,m){
-  var ap=h<12?"AM":"PM";
-  var h12=h%12===0?12:h%12;
-  return bn(h12)+":"+(m<10?bn(0):"")+bn(m)+" "+ap;
+const STORAGE_KEY = 'zakaria_user_contacts';
+const AV = ['av-1','av-2','av-3','av-4','av-5','av-6','av-7','av-8'];
+
+let userContacts = (function() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+  catch(e) { return []; }
+})();
+
+let modalMode  = 'add';
+let editingIdx = -1;
+
+function saveStorage() { localStorage.setItem(STORAGE_KEY, JSON.stringify(userContacts)); }
+function allContacts() { return PRESET.concat(userContacts); }
+
+/* Phone formatter */
+function fmtPhone(raw) {
+  if (!raw) return '';
+  var c = raw.replace(/\D/g,'');
+  if (c.startsWith('880') && c.length > 10) return '+' + c;
+  if (c.startsWith('0'))  return '+880' + c.slice(1);
+  return '+880' + c;
 }
 
-// ─── Clock ───
-var DAYS=["রবিবার","সোমবার","মঙ্গলবার","বুধবার","বৃহস্পতিবার","শুক্রবার","শনিবার"];
-var MONS=["জানুয়ারি","ফেব্রুয়ারি","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর"];
-function tick(){
-  var n=new Date();
-  var h=n.getHours(),m=n.getMinutes();
-  var h12=h%12===0?12:h%12;
-  var ap=h<12?"AM":"PM";
-  var hh=(h12<10?"0":"")+h12, mm=(m<10?"0":"")+m;
-  document.getElementById("bigclk").innerHTML=bn(hh)+'<span class="colon">:</span>'+bn(mm)+' <span style="font-size:.9rem;color:var(--ac);letter-spacing:1px">'+ap+'</span>';
-  document.getElementById("stclk").textContent=hh+":"+mm+" "+ap;
-  document.getElementById("clkdate").textContent=bn(n.getDate())+" "+MONS[n.getMonth()]+", "+bn(n.getFullYear());
-  document.getElementById("clkday").textContent=DAYS[n.getDay()];
-  if(n.getSeconds()===0) hlPrayer();
+/* Initials */
+function initials(name) {
+  var p = name.trim().split(/\s+/);
+  return p.length >= 2 ? p[0][0] + p[1][0] : name.substring(0,2);
 }
-setInterval(tick,1000); tick();
 
-// ─── Prayer ───
-var ptimes=null;
-function ldPrayer(){
-  var n=new Date();
-  var url="https://api.aladhan.com/v1/timings/"+n.getDate()+"-"+(n.getMonth()+1)+"-"+n.getFullYear()+"?latitude=22.701&longitude=90.3535&method=1";
-  fetch(url).then(function(r){return r.json();}).then(function(d){
-    if(d.code===200){
-      var t=d.data.timings;
-      ptimes=[t.Fajr,t.Dhuhr,t.Asr,t.Maghrib,t.Isha];
-      ptimes.forEach(function(tv,i){
-        var p=tv.split(":");
-        var ph=parseInt(p[0]),pm=parseInt(p[1]);
-        var el=document.getElementById("pt"+i);
-        el.textContent=fmt12(ph,pm);
-        el.classList.remove("ld");
-      });
-      hlPrayer();
+/* SVG icons as functions to avoid string issues */
+function icoCall() {
+  var s = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  s.setAttribute('width','17'); s.setAttribute('height','17');
+  s.setAttribute('viewBox','0 0 24 24'); s.setAttribute('fill','none');
+  s.setAttribute('stroke','#2ea043'); s.setAttribute('stroke-width','2');
+  s.setAttribute('stroke-linecap','round'); s.setAttribute('stroke-linejoin','round');
+  var p = document.createElementNS('http://www.w3.org/2000/svg','path');
+  p.setAttribute('d','M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.9 12.1 19.79 19.79 0 0 1 1.85 3.55 2 2 0 0 1 3.82 1.36h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.88 6.88l.97-.97a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z');
+  s.appendChild(p); return s;
+}
+
+function icoWa() {
+  var s = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  s.setAttribute('width','17'); s.setAttribute('height','17');
+  s.setAttribute('viewBox','0 0 24 24'); s.setAttribute('fill','#25d366');
+  var p1 = document.createElementNS('http://www.w3.org/2000/svg','path');
+  p1.setAttribute('d','M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z');
+  var p2 = document.createElementNS('http://www.w3.org/2000/svg','path');
+  p2.setAttribute('d','M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.108 1.523 5.837L.057 23.428a.5.5 0 0 0 .608.61l5.7-1.444A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.144-1.426l-.369-.219-3.827.97.998-3.74-.24-.386A9.963 9.963 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z');
+  s.appendChild(p1); s.appendChild(p2); return s;
+}
+
+/* Render */
+function renderContacts(list) {
+  var el  = document.getElementById('contactList');
+  var all = allContacts();
+  el.innerHTML = '';
+
+  list.forEach(function(c, i) {
+    var gIdx   = all.indexOf(c);
+    var isUser = gIdx >= PRESET.length;
+    var uIdx   = isUser ? gIdx - PRESET.length : -1;
+    var phone  = fmtPhone(c.phone);
+    var phTxt  = phone || '(নাম্বার নেই)';
+    var callHr = phone ? 'tel:' + phone : 'javascript:void(0)';
+    var waHr   = phone ? 'https://wa.me/' + phone.replace('+','') : 'javascript:void(0)';
+
+    /* Card */
+    var card = document.createElement('div');
+    card.className = 'contact-card' + (isUser ? ' user-added' : '');
+    if (isUser) {
+      card.addEventListener('click', (function(idx) {
+        return function() { openModal('edit', idx); };
+      })(uIdx));
     }
-  }).catch(function(){
-    for(var i=0;i<5;i++){
-      var el=document.getElementById("pt"+i);
-      el.textContent="N/A"; el.classList.remove("ld");
-    }
+
+    /* Serial */
+    var serial = document.createElement('span');
+    serial.className = 'serial';
+    serial.textContent = i + 1;
+    card.appendChild(serial);
+
+    /* Avatar */
+    var av = document.createElement('div');
+    av.className = 'avatar ' + AV[gIdx % AV.length];
+    av.textContent = initials(c.name);
+    card.appendChild(av);
+
+    /* Info */
+    var info = document.createElement('div');
+    info.className = 'contact-info';
+    var nameEl = document.createElement('div');
+    nameEl.className = 'name';
+    nameEl.textContent = c.name;
+    var phoneEl = document.createElement('div');
+    phoneEl.className = 'phone';
+    phoneEl.textContent = phTxt;
+    info.appendChild(nameEl);
+    info.appendChild(phoneEl);
+    card.appendChild(info);
+
+    /* Actions */
+    var actions = document.createElement('div');
+    actions.className = 'actions';
+    actions.addEventListener('click', function(e) { e.stopPropagation(); });
+
+    var callBtn = document.createElement('a');
+    callBtn.className = 'btn-action btn-call';
+    callBtn.href = callHr;
+    callBtn.title = 'কল করুন';
+    callBtn.appendChild(icoCall());
+    actions.appendChild(callBtn);
+
+    var waBtn = document.createElement('a');
+    waBtn.className = 'btn-action btn-whatsapp';
+    waBtn.href = waHr;
+    waBtn.target = '_blank';
+    waBtn.rel = 'noopener';
+    waBtn.title = 'WhatsApp';
+    waBtn.appendChild(icoWa());
+    actions.appendChild(waBtn);
+
+    card.appendChild(actions);
+    el.appendChild(card);
   });
+
+  document.getElementById('totalCount').textContent = all.length;
 }
-function hlPrayer(){
-  if(!ptimes) return;
-  var n=new Date(), now=n.getHours()*60+n.getMinutes();
-  var mins=ptimes.map(function(tv){var p=tv.split(":");return parseInt(p[0])*60+parseInt(p[1]);});
-  var act=4;
-  for(var i=0;i<mins.length;i++){if(now>=mins[i])act=i;}
-  if(now<mins[0]) act=4;
-  for(var j=0;j<5;j++) document.getElementById("pc"+j).classList.toggle("act",j===act);
+
+function filterContacts() {
+  var q = document.getElementById('searchInput').value.trim().toLowerCase();
+  var list = q
+    ? allContacts().filter(function(c) { return c.name.toLowerCase().includes(q) || c.phone.includes(q); })
+    : allContacts();
+  renderContacts(list);
 }
-ldPrayer();
 
-// ─── Render ───
-function avc(name){var h=0;for(var i=0;i<name.length;i++){h=(h*31+name.charCodeAt(i))&0xffff;}return"av"+(h%8);}
-function inits(name){var ws=name.trim().split(" ");var r="";for(var i=0;i<Math.min(2,ws.length);i++){r+=ws[i][0]||"";}return r.toUpperCase()||"?";}
+/* Modal */
+function openModal(mode, uIdx) {
+  modalMode  = mode;
+  editingIdx = uIdx !== undefined ? uIdx : -1;
 
-function render(list){
-  var pad=document.getElementById("lpad");
-  var nores=document.getElementById("nores");
-  var visel=document.getElementById("viscnt");
-  var totel=document.getElementById("totpill");
-  var slbl=document.getElementById("slbl");
-  var ac=allC();
-
-  totel.textContent=bn(ac.length)+" জন";
-  visel.textContent=bn(list.length);
-  slbl.textContent=list.length===ac.length?"সকল পরিচিত":"ফলাফল — "+bn(list.length)+" টি";
-
-  var old=pad.querySelectorAll(".ci");
-  for(var i=0;i<old.length;i++) old[i].remove();
-  nores.style.display=list.length?"none":"block";
-
-  for(var i=0;i<list.length;i++){
-    var c=list[i];
-    var isU=PRESET.indexOf(c)===-1;
-    var xi=extra.indexOf(c);
-    var wa="88"+c.number.replace(/^0/,"");
-    var card=document.createElement("div");
-    card.className="ci";
-    card.style.animationDelay=Math.min(i*0.025,0.35)+"s";
-    card.innerHTML=
-      '<span class="sn">'+bn(i+1)+'</span>'+
-      '<div class="av '+avc(c.name)+'">'+inits(c.name)+'</div>'+
-      '<div class="inf">'+
-        '<div class="cn">'+c.name+'</div>'+
-        '<div class="cnum">'+c.number+'</div>'+
-      '</div>'+
-      '<div class="acts">'+
-        '<a class="ba bacall" href="tel:'+c.number+'" title="কল">📞</a>'+
-        '<a class="ba bawa" href="https://wa.me/'+wa+'" target="_blank" title="WhatsApp">💬</a>'+
-        (isU?'<button class="ba badel" onclick="delC('+xi+')" title="মুছুন">🗑</button>':'')+
-      '</div>'+
-      (isU?'<div class="newtag">NEW</div>':'');
-    pad.appendChild(card);
+  if (mode === 'edit') {
+    var c = userContacts[uIdx];
+    document.getElementById('modalTitle').textContent = 'পরিচিত সম্পাদনা করুন';
+    document.getElementById('btnSave').textContent    = 'আপডেট করুন';
+    document.getElementById('inputName').value  = c.name;
+    document.getElementById('inputPhone').value = c.phone.replace(/^\+?880/,'');
+  } else {
+    document.getElementById('modalTitle').textContent = 'নতুন পরিচিত যোগ করুন';
+    document.getElementById('btnSave').textContent    = 'সংরক্ষণ করুন';
+    document.getElementById('inputName').value  = '';
+    document.getElementById('inputPhone').value = '';
   }
+  document.getElementById('modalOverlay').classList.add('open');
+  setTimeout(function() { document.getElementById('inputName').focus(); }, 80);
 }
 
-function refrAll(){render(allC());}
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+function closeOnBackdrop(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
 
-// ─── Search ───
-function onSearch(v){
-  var q=v.trim().toLowerCase();
-  document.getElementById("sclr").classList.toggle("on",q.length>0);
-  if(!q){render(allC());return;}
-  render(allC().filter(function(c){return c.name.toLowerCase().indexOf(q)>-1||c.number.indexOf(q)>-1;}));
-}
-function clearSrch(){
-  document.getElementById("srch").value="";
-  document.getElementById("sclr").classList.remove("on");
-  refrAll();
-}
-
-// ─── Modal ───
-function openModal(){
-  document.getElementById("iname").value="";
-  document.getElementById("inum").value="";
-  document.getElementById("iname").classList.remove("err");
-  document.getElementById("inum").classList.remove("err");
-  document.getElementById("ov").classList.add("open");
-  setTimeout(function(){document.getElementById("iname").focus();},350);
-}
-function closeModal(){document.getElementById("ov").classList.remove("open");}
-function bgcl(e){if(e.target===document.getElementById("ov"))closeModal();}
-function saveContact(){
-  var name=document.getElementById("iname").value.trim();
-  var num=document.getElementById("inum").value.trim();
-  var ok=true;
-  if(!name){document.getElementById("iname").classList.add("err");ok=false;}
-  else document.getElementById("iname").classList.remove("err");
-  if(!num||!/^01[3-9]\d{8}$/.test(num)){document.getElementById("inum").classList.add("err");ok=false;}
-  else document.getElementById("inum").classList.remove("err");
-  if(!ok) return;
-  extra.push({name:name,number:num});
-  svx(extra); closeModal(); clearSrch(); showT("✓ নাম্বার সেভ হয়েছে!");
-}
-function delC(idx){
-  if(idx<0) return;
-  extra.splice(idx,1); svx(extra); clearSrch(); showT("নাম্বার মুছে ফেলা হয়েছে");
+function saveModal() {
+  var name  = document.getElementById('inputName').value.trim();
+  var phone = document.getElementById('inputPhone').value.trim();
+  if (!name) {
+    var el = document.getElementById('inputName');
+    el.style.borderColor = '#f87171';
+    el.animate([{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:180});
+    setTimeout(function(){ el.style.borderColor=''; }, 700);
+    el.focus(); return;
+  }
+  if (modalMode === 'edit') {
+    userContacts[editingIdx] = { name: name, phone: phone };
+    showToast('✓ আপডেট সম্পন্ন হয়েছে');
+  } else {
+    userContacts.push({ name: name, phone: phone });
+    showToast('✓ নতুন পরিচিত সংরক্ষিত হয়েছে');
+  }
+  saveStorage();
+  renderContacts(allContacts());
+  closeModal();
 }
 
-// ─── Toast ───
-var tT;
-function showT(msg){
-  var el=document.getElementById("toast");
-  el.textContent=msg; el.classList.add("on");
-  clearTimeout(tT); tT=setTimeout(function(){el.classList.remove("on");},2500);
+/* Toast */
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2600);
 }
 
-refrAll();
+/* Clock */
+var BN_MO  = ['জানু','ফেব্রু','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টে','অক্টো','নভে','ডিসে'];
+var BN_DAY = ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
+
+function tick() {
+  var n = new Date();
+  var h = n.getHours(), m = n.getMinutes();
+  var ap = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  document.getElementById('clockDisplay').innerHTML =
+    String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ' <span class="ampm">' + ap + '</span>';
+  document.getElementById('dateDisplay').textContent =
+    n.getDate() + ' ' + BN_MO[n.getMonth()] + ', ' + n.getFullYear();
+  document.getElementById('dayDisplay').textContent = BN_DAY[n.getDay()];
+}
+
+tick();
+setInterval(tick, 1000);
+renderContacts(allContacts());
 </script>
 </body>
 </html>
